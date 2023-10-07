@@ -99,6 +99,7 @@ export async function getSimilarProducts(productId: string) {
 
 export async function addUserEmailToProduct(productId: string, userEmail: string) {
     try {
+        connectDB();
         const product = await Product.findById(productId);
         console.log(typeof userEmail)
         console.log(userEmail.trim())

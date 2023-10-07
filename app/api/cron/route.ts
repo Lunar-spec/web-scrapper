@@ -5,15 +5,15 @@ import { scrapeAmazonProduct } from "@/lib/scrapper";
 import { getAveragePrice, getEmailNotifType, getHighestPrice, getLowestPrice } from "@/lib/utils";
 import { NextResponse } from "next/server";
 
-// export const maxDuration = 10; // 5min
-// export const dynamic = 'force-dynamic'
-// export const revalidate = 0;
+export const maxDuration = 300; // 5min
+export const dynamic = 'force-dynamic'
+export const revalidate = 0;
 
 export async function GET() {
     try {
         connectDB();
 
-        const products = await Product.find({});
+        const products = await Product.find();
 
         if (!products) throw new Error("No products found");
 
