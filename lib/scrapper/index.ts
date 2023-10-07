@@ -31,9 +31,11 @@ export async function scrapeAmazonProduct(url: string) {
 
         const currentPrice = extractPrice(
             $(".priceToPay span.a-price-whole"),
-            $("a.size.base.a-color-price"),
-            $("a.button-selected .a-color-base")
+            $("span.a-size-base.a-color-price"),
+            $("a.button-selected.a-color-base")
         );
+
+        // console.log(currentPrice)
 
         const originalPrice = extractPrice(
             $("#priceblock_ourprice"),
@@ -69,7 +71,7 @@ export async function scrapeAmazonProduct(url: string) {
         //     outOfStock,
         //     imageUrls,
         //     currency,
-        //     discountRate,
+        //     discountRate: Number(discountRate),
         //     rating,
         //     desc,
         //     lowestPrice: Number(currentPrice) || Number(originalPrice),
@@ -88,7 +90,7 @@ export async function scrapeAmazonProduct(url: string) {
             highestPrice: Number(originalPrice) || Number(currentPrice),
             averagePrice: Number(currentPrice) || Number(originalPrice),
             priceHistory: [],
-            discountRate,
+            discountRate: Number(discountRate),
             desc,
             rating,
             isOutOfStock: outOfStock,

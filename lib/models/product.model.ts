@@ -65,10 +65,9 @@ const productSchema = new mongoose.Schema(
             {
                 email: {
                     type: String,
-                    required: true,
-                    default: [],
-                },
-            },
+                    unique: true,
+                }
+            }
         ],
     },
     {
