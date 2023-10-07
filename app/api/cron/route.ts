@@ -72,6 +72,6 @@
 //     }
 // }
 
-export default function handler(req: any, res: any) {
-    res.status(200).json({ name: 'John Doe' })
+export async function GET() {
+    console.log('Hello there')
 }
