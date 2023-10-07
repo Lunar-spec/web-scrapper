@@ -62,33 +62,40 @@ export async function scrapeAmazonProduct(url: string) {
 
         const desc = extractDesc($(".a-unordered-list.a-vertical.a-spacing-mini"))
 
-        console.log({
-            title,
-            currentPrice,
-            originalPrice,
-            outOfStock,
-            imageUrls,
-            currency,
-            discountRate,
-            rating,
-            desc
-        });
+        // console.log({
+        //     title,
+        //     currentPrice: Number(currentPrice),
+        //     originalPrice: Number(originalPrice),
+        //     outOfStock,
+        //     imageUrls,
+        //     currency,
+        //     discountRate,
+        //     rating,
+        //     desc,
+        //     lowestPrice: Number(currentPrice) || Number(originalPrice),
+        //     highestPrice: Number(originalPrice) || Number(currentPrice),
+        //     averagePrice: Number(currentPrice) || Number(originalPrice),
+        // });
 
         const data = {
             url,
             currency: currency || '$',
-            image: imageUrls[0],
+            image: imageUrls[1],
             title,
             currentPrice: Number(currentPrice) || Number(originalPrice),
             originalPrice: Number(originalPrice) || Number(currentPrice),
+            lowestPrice: Number(currentPrice) || Number(originalPrice),
+            highestPrice: Number(originalPrice) || Number(currentPrice),
+            averagePrice: Number(currentPrice) || Number(originalPrice),
             priceHistory: [],
             discountRate,
             desc,
-            stars: rating,
+            rating,
             isOutOfStock: outOfStock,
         }
 
         // console.log(data)
+        return data;
     } catch (error: any) {
         throw new Error(`Failed to scrape product: ${error.message}`);
     }
